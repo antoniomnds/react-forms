@@ -1,6 +1,18 @@
 export default function Signup() {
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    // const enteredEmail = formData.get('email'); // to get one field at a time
+    const acquisitionChannel = formData.getAll('acquisition'); // to get multiple values from one input
+    const data = Object.fromEntries(formData.entries());
+    data.acquisition = acquisitionChannel;
+    console.log(data);
+
+    // form can programmatically be reset with event.target.reset()
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>Welcome on board!</h2>
       <p>We just need a little bit of data from you to get you started 🚀</p>
 
